@@ -22,6 +22,8 @@
         />
       </div>
       <button type="submit">Add</button>
+
+      <button @click="reset">Reset</button>
     </form>
   </div>
 </template>
@@ -42,6 +44,10 @@ export default {
     async add() {
       await postService.add(this.newPost);
       this.$router.push({ name: "posts" });
+    },
+
+    reset() {
+      (this.newPost.title = ""), (this.newPost.text = "");
     },
   },
 };
