@@ -2,9 +2,8 @@
   <div id="app">
     <nav class="navbar navbar-light bg-light">
       <router-link to="/posts">Posts</router-link>
-
-      <router-view></router-view>
     </nav>
+    <router-view></router-view>
   </div>
 </template>
 
