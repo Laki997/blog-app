@@ -9,6 +9,7 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="Enter title"
+          minlength="2"
         />
       </div>
       <div class="form-group">
@@ -19,11 +20,14 @@
           class="form-control"
           id="exampleFormControlInput1"
           placeholder="Enter text"
+          maxlength="300"
         />
       </div>
-      <button type="submit">Add</button>
+      <button class="btn btn-primary btn-bg" type="submit">Add</button>
+      <br />
+      <br />
 
-      <button @click="reset">Reset</button>
+      <button class="btn btn-warning btn-bg" @click="reset">Reset</button>
     </form>
   </div>
 </template>
