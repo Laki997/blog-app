@@ -4,24 +4,31 @@
       {{
         post.title
       }}
+      <router-link :to="`/post/${post.id}`">Single post</router-link>
     </ul>
-    <router-link :to="`/post/${post.id}`">Single post</router-link>
   </div>
 </template>
 
 <script>
 import postService from "../services/PostService.js";
 export default {
+  props: ["id"],
   data() {
     return {
       posts: "",
+      singlePost: "",
     };
   },
 
   methods: {
-    async getAll() {
-      this.posts = await postService.getAll();
+    async get(id) {
+      this.singlePost = await postService.getAll(id);
     },
+  },
+
+  async created() {
+    this.posts = await postService.getAll();
+    console.log(this.posts);
   },
 };
 </script>

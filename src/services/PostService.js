@@ -3,9 +3,9 @@ import axios from "axios";
 class PostService {
   constructor() {
     const instance = axios.create({
-      baseUrl: "http://localhost:3000/",
+      baseURL: "http://localhost:3000/",
     });
-    this.client - instance;
+    this.client = instance;
   }
 
   async getAll() {
@@ -16,6 +16,13 @@ class PostService {
 
   async get(id) {
     await this.client.get(`/api/posts/${id}`);
+  }
+
+  async add(newPost) {
+    await this.client.post("/api/posts", {
+      title: newPost.title,
+      text: newPost.text,
+    });
   }
 }
 

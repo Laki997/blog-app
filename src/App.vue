@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-light bg-light">
-      <router-link to="/posts">Posts</router-link>
-    </nav>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <router-link class="navbar-brand" to="/posts">Posts</router-link>
+        <router-link class="navbar-brand" to="/add">Add</router-link>
+      </nav>
+    </div>
     <router-view></router-view>
   </div>
 </template>
-
 <script>
 export default {
   name: "App",
