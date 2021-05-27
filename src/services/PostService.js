@@ -15,7 +15,9 @@ class PostService {
   }
 
   async get(id) {
-    await this.client.get(`/api/posts/${id}`);
+    let { data } = await this.client.get(`/api/posts/${id}`);
+
+    return data;
   }
 
   async add(newPost) {
