@@ -13,6 +13,10 @@ class PostService {
 
     return data;
   }
+
+  async get(id) {
+    await this.client.get(`/api/posts/${id}`);
+  }
 }
 
 export default new PostService();

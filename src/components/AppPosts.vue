@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>Cao</h1>
+    <ul v-for="post in posts" :key="post.id">
+      {{
+        post.title
+      }}
+    </ul>
+    <router-link :to="`/post/${post.id}`">Single post</router-link>
   </div>
 </template>
 
