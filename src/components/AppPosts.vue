@@ -21,7 +21,10 @@
 
 <script>
 import postService from "../services/PostService.js";
+import DateMixin from "../mixins/DateMixin.js";
+
 export default {
+  mixins: [DateMixin],
   props: ["id"],
   data() {
     return {
@@ -49,9 +52,6 @@ export default {
 
   async created() {
     this.posts = await postService.getAll();
-    this.posts.forEach((element) => {
-      this.brojKomentara = element.comments.length;
-    });
   },
 };
 </script>
