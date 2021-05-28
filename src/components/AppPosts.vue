@@ -7,10 +7,14 @@
       {{
         post.title
       }}
+
       <router-link :to="`/post/${post.id}`">Single post</router-link>
       <button @click="deletePost(post.id)" class="btn btn-danger btn-lg">
         Delete
       </button>
+      ({{
+        post.comments.length
+      }})
     </ul>
   </div>
 </template>
@@ -23,6 +27,7 @@ export default {
     return {
       posts: "",
       singlePost: "",
+      brojKomentara: "",
     };
   },
 
@@ -44,6 +49,9 @@ export default {
 
   async created() {
     this.posts = await postService.getAll();
+    this.posts.forEach((element) => {
+      this.brojKomentara = element.comments.length;
+    });
   },
 };
 </script>

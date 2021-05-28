@@ -9,7 +9,9 @@ class PostService {
   }
 
   async getAll() {
-    let { data } = await this.client.get("api/posts");
+    let { data } = await this.client.get(
+      `api/posts?filter={"include":["comments"]}`
+    );
 
     return data;
   }
