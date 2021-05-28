@@ -21,9 +21,16 @@ class PostService {
   }
 
   async add(newPost) {
-    await this.client.post("/api/posts", {
+    return await this.client.post("/api/posts", {
       title: newPost.title,
       text: newPost.text,
+    });
+  }
+
+  async edit(id, post) {
+    await this.client.put(`api/posts/${id}`, {
+      title: post.title,
+      text: post.text,
     });
   }
 }

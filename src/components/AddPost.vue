@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="add">
+    <form @submit.prevent="submitPost">
       <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
         <input
@@ -23,7 +23,12 @@
           maxlength="300"
         />
       </div>
-      <button class="btn btn-primary btn-bg" type="submit">Add</button>
+      <div v-if="addOrEdit">
+        <button class="btn btn-primary btn-bg" type="submit">Edit</button>
+      </div>
+      <div v-else>
+        <button class="btn btn-primary btn-bg" type="submit">Add</button>
+      </div>
       <br />
       <br />
 
@@ -35,6 +40,7 @@
 <script>
 import postService from "../services/PostService.js";
 export default {
+  props: ["id"],
   data() {
     return {
       newPost: {
@@ -45,14 +51,38 @@ export default {
   },
 
   methods: {
-    async add() {
-      await postService.add(this.newPost);
-      this.$router.push({ name: "posts" });
-    },
-
     reset() {
       (this.newPost.title = ""), (this.newPost.text = "");
     },
+    async submitPost() {
+      if (this.addOrEdit) {
+        await postService.edit(this.id, this.newPost);
+
+        this.$router.push({ name: "posts" });
+      } else {
+        await postService.add(this.newPost);
+        this.$router.push({ name: "posts" });
+      }
+    },
+  },
+
+  computed: {
+    addOrEdit() {
+      console.log(this.id);
+      if (this.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+
+  async created() {
+    if (this.id) {
+      let singlePost = await postService.get(this.id);
+      this.newPost = singlePost;
+    }
+    return;
   },
 };
 </script>

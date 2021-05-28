@@ -1,6 +1,9 @@
 <template>
   <div>
     <ul v-for="post in posts" :key="post.id">
+      <router-link :to="`/edit/${post.id}`" tag="button" class="btn btn-primary"
+        >Edit</router-link
+      >
       {{
         post.title
       }}
@@ -28,7 +31,6 @@ export default {
 
   async created() {
     this.posts = await postService.getAll();
-    console.log(this.posts);
   },
 };
 </script>
