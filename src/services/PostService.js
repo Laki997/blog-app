@@ -37,6 +37,18 @@ class PostService {
   async delete(id) {
     await this.client.delete(`api/posts/${id}`);
   }
+
+  async addComment(comment, postId) {
+    return await this.client.post(`api/posts/${postId}/comments`, {
+      text: comment.text,
+      postId: postId,
+    });
+  }
+
+  async getAllComments() {
+    let { data } = await this.client.get(`api/comments`);
+    return data;
+  }
 }
 
 export default new PostService();
