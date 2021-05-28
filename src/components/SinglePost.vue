@@ -47,7 +47,8 @@ export default {
 
   async created() {
     this.singlePost = await postService.get(this.id);
-    this.comments = await postService.getAllComments();
+    this.comments = this.singlePost.comments;
+    console.log(this.comments);
   },
 };
 </script>

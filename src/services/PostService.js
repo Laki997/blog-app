@@ -15,7 +15,9 @@ class PostService {
   }
 
   async get(id) {
-    let { data } = await this.client.get(`/api/posts/${id}`);
+    let { data } = await this.client.get(
+      `api/posts/${id}?filter={"include":["comments"]}`
+    );
 
     return data;
   }
@@ -45,10 +47,10 @@ class PostService {
     });
   }
 
-  async getAllComments() {
-    let { data } = await this.client.get(`api/comments`);
-    return data;
-  }
+  // async getAllComments() {
+  //   let { data } = await this.client.get(`api/comments`);
+  //   return data;
+  // }
 }
 
 export default new PostService();
