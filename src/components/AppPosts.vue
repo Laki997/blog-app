@@ -7,7 +7,10 @@
       {{
         post.title
       }}
-
+      <div>
+        <p>{{ posts.createdAt | formatDate(null, "YYYY-MM-DD") }}</p>
+        <p>{{ posts.createdAd | diffForHumans }}</p>
+      </div>
       <router-link :to="`/post/${post.id}`">Single post</router-link>
       <button @click="deletePost(post.id)" class="btn btn-danger btn-lg">
         Delete

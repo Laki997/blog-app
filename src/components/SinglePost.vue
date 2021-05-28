@@ -4,6 +4,10 @@
     <hr />
     <h1>{{ singlePost.title }}</h1>
     <h3>{{ singlePost.text }}</h3>
+    <div>
+      <p>{{ singlePost.createdAt | formatDate(null, "YYYY-MM-DD") }}</p>
+      <p>{{ singlePost.createdAd | diffForHumans }}</p>
+    </div>
     <hr />
     <h1>Komentari</h1>
     <div v-for="comment in comments" :key="comment.id">
@@ -21,8 +25,10 @@
 </template>
 
 <script>
+import DateMixin from "../mixins/DateMixin.js";
 import postService from "../services/PostService.js";
 export default {
+  mixins: [DateMixin],
   props: ["id"],
   data() {
     return {
