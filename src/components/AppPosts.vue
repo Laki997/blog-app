@@ -8,6 +8,9 @@
         post.title
       }}
       <router-link :to="`/post/${post.id}`">Single post</router-link>
+      <button @click="deletePost(post.id)" class="btn btn-danger btn-lg">
+        Delete
+      </button>
     </ul>
   </div>
 </template>
@@ -25,7 +28,17 @@ export default {
 
   methods: {
     async get(id) {
-      this.singlePost = await postService.getAll(id);
+      this.singlePost = await postService.get(id);
+    },
+
+    async deletePost(id) {
+      const post = this.posts.find((post) => {
+        return post.id === Number(id);
+      });
+      let index = this.posts.indexOf(post);
+
+      await postService.delete(id);
+      this.posts.splice(index, 1);
     },
   },
 

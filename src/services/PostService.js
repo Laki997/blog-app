@@ -33,6 +33,10 @@ class PostService {
       text: post.text,
     });
   }
+
+  async delete(id) {
+    await this.client.delete(`api/posts/${id}`);
+  }
 }
 
 export default new PostService();
